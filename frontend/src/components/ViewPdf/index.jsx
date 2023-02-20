@@ -1,90 +1,43 @@
-import React,{useState} from 'react'
-// Import the main component
-import { Viewer } from '@react-pdf-viewer/core'; // install this library
-// Plugins
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; // install this library
-// Import the styles
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-// Worker
-import { Worker } from '@react-pdf-viewer/core'; // install this library
+import { useEffect, useState } from "react";
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "./viewPdf.css";
 
-export const  ViewPdf = () => {
+const ViewPdf = () => {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
-  // Create new plugin instance
-  const defaultLayoutPluginInstance = defaultLayoutPlugin();
-  
-  // for onchange event
-  const [pdfFile, setPdfFile]=useState(null);
-  const [pdfFileError, setPdfFileError]=useState('');
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
 
-  // for submit event
-  const [viewPdf, setViewPdf]=useState(null);
+  const goToPrevPage = () =>
+    setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
 
-  // onchange event
-  const fileType=['application/pdf'];
-  const handlePdfFileChange=(e)=>{
-    let selectedFile=e.target.files[0];
-    if(selectedFile){
-      if(selectedFile&&fileType.includes(selectedFile.type)){
-        let reader = new FileReader();
-            reader.readAsDataURL(selectedFile);
-            reader.onloadend = (e) =>{
-              setPdfFile(e.target.result);
-              setPdfFileError('');
-            }
-      }
-      else{
-        setPdfFile(null);
-        setPdfFileError('Please select valid pdf file');
-      }
-    }
-    else{
-      console.log('select your file');
-    }
-  }
-
-  // form submit
-  const handlePdfFileSubmit=(e)=>{
-    e.preventDefault();
-    if(pdfFile!==null){
-      setViewPdf(pdfFile);
-    }
-    else{
-      setViewPdf(null);
-    }
-  }
-
+  const goToNextPage = () =>
+    setPageNumber(pageNumber + 1 >= numPages ? numPages : pageNumber + 1);
+  useEffect(()=>{
+      const file=async ()=>await fetch('https://drive.google.com/file/d/1gg3TTVclZZYP1NnlQ8FwYW-IAIP_jX8b/view?usp=drivesdk').then(res=>console.log(res));
+  },[])
   return (
-    <div className='container'>
-
-    <br></br>
-    
-      <form className='form-group' onSubmit={handlePdfFileSubmit}>
-        <input type="file" className='form-control'
-          required onChange={handlePdfFileChange}
-        />
-        {pdfFileError&&<div className='error-msg'>{pdfFileError}</div>}
-        <br></br>
-        <button type="submit" className='btn btn-success btn-lg'>
-          UPLOAD
+    <div className="page">
+      <nav>
+        <button onClick={goToPrevPage} className="previous">
+          Prev
         </button>
-      </form>
-      <br></br>
-      <h4>View PDF</h4>
-      <div className='pdf-container'>
-        {/* show pdf conditionally (if we have one)  */}
-        {viewPdf&&<><Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-          <Viewer fileUrl={viewPdf}
-            plugins={[defaultLayoutPluginInstance]} />
-      </Worker></>}
+        <button onClick={goToNextPage} className="next">
+          Next
+        </button>
+        <p>
+          Page {pageNumber} of {numPages}
+        </p>
+      </nav>
 
-      {/* if we dont have pdf or viewPdf state is null */}
-      {!viewPdf&&<>No pdf file selected</>}
-      </div>
-
+      <Document file="https://drive.google.com/file/d/1gg3TTVclZZYP1NnlQ8FwYW-IAIP_jX8b/view?usp=drivesdk" onLoadSuccess={onDocumentLoadSuccess}>
+        <Page pageNumber={pageNumber} />
+      </Document>
     </div>
-  )
-}
+  );
+};
 
-export default ViewPdf
+export default ViewPdf;
