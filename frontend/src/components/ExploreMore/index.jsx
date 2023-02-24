@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ExploremoreImg from "../../assets/Exploremore.jpg"
 const ExploreMore = () => {
   return (
@@ -23,7 +24,10 @@ const ExploreMore = () => {
       <p className="mb-8 leading-relaxed">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
       <div className="flex justify-center">
         <button className="inline-flex text-white bg-[#20b486]/[0.8] border-0 py-2 px-6 focus:outline-none hover:bg-[#20b489]/[1] rounded text-lg text-[15px] md:text-xl">Explore Courses</button>
-        <button className="ml-4 inline-flex bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-[#20b486] text-[15px] md:text-xl">Sign up for free</button>
+        <Link to={'/signup'}>
+        
+        <button className="ml-4 inline-flex bg-gray-100 border-0 py-4 md:py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-[#20b486] text-[15px] md:text-xl ">Sign up for free</button>
+        </Link>
       </div>
     </div>
   </div>

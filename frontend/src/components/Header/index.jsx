@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineLock } from "react-icons/ai";
 
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 const Header = () => {
+  
   const [burger, setBurger] = useState(false);
+  
+  const setVisibleHandler=()=>setBurger(false)
 
   return (
     <div className=" md:flex w-full md:justify-around md:items-center mx-auto h-[60px] md:h-[70px] md:shadow-sm sticky top-0 left-0 bg-gray-300 z-10 ">
@@ -17,7 +20,8 @@ const Header = () => {
       <div className="hidden md:flex justify-center bg-gray-300 ">
         <li className="md:flex items-center justify-center list-none md:gap-6 text-gray-500">
           <ul className="hover:cursor-pointer hover:text-[#20b486] hover:transition-all delay-600">
-            <Link to="/">Home</Link>
+            <Link to="/" data-toggle="collapse"
+      data-target="#navbarCollapse">Home</Link>
           </ul>
           <ul className="hover:cursor-pointer hover:text-[#20b486] hover:transition-all delay-600">
             <Link to="/about">About</Link>
@@ -44,12 +48,13 @@ const Header = () => {
        Sign Up for Free
         </div></Link>
       </div>
-      <div
+      <div 
+        onClick={setVisibleHandler}
         className={`bg-gray-300 md:hidden transiti duration-500 ${
           burger ? "translate-y-[0%]" : "translate-y-[-300%]"
         }`}
       >
-        <div className="md:flex justify-center bg-gray-300 ">
+        <div className={`md:flex justify-center bg-gray-300 `} >
           <li className="flex flex-col items-center justify-center list-none gap-4 text-gray-500 py-2">
            <Link to={'/'}> <ul className="hover:cursor-pointer hover:text-[#20b486] hover:transition-all delay-600">
               Home
@@ -83,7 +88,7 @@ const Header = () => {
           </div>
           </Link>
           <Link to={'/signup'}>
-          <div className="text-white px-6 w-[50vw] item-center border py-2 bg-[#20b486] rounded-md hover:bg-transparent hover:text-[#20b486] hover:border-[#20b486] transition duration-500 ease-in-out mb-10">
+          <div className="text-white px-6 w-[50vw] item-center border py-2 bg-[#20b486] rounded-md hover:bg-transparent hover:text-[#20b486] hover:border-[#20b486] transition duration-500 ease-in-out mb-10 text-center">
             Sign up for Free
           </div>
           </Link>

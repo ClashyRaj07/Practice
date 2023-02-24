@@ -9,14 +9,16 @@ import ContactUs from "./components/Contact";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import CourseInterface from "./components/CourseInterface";
+import Courses from "./components/Courses/Courses";
 
 function App() {
   return (
     <>
       
       <Router>
+        {/* <Courses/> */}
         <Header />
-        <CourseInterface/>
+        {/* <CourseInterface/> */}
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/login" element={<Login/>}/>

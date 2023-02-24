@@ -8,8 +8,8 @@ const ContactUs = () => {
     <div className="mt-10 text-white text-4xl font-bold">GET IN TOUCH</div>
 </div>
 <div className="bg-white h-auto flex justify-center ">
-    <div className="bg-white  -mt-40 md:w-1/2 grid lg:flex justify-center rounded-md shadow-2xl">
-        <div className="w-3/4 lg:w-2/3 ">
+    <div className="bg-white  -mt-40 w-[90%] md:w-1/2 grid lg:flex justify-center rounded-md shadow-2xl">
+        <div className="md:w-3/4 lg:w-2/3 ">
             <div className="text-lg font-medium text-[#20b486] m-6 ">Drop a Message</div>
             <div className=" flex lg:flex-row flex-col">
                 <div className="m-10">
