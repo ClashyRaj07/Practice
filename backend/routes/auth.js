@@ -102,6 +102,7 @@ router.post('/login', [
 // ROUTE 3 
 
 // Get loggedin user details using POST "/api/auth/getUser", Login required
+
 // router.post('/getuser', fetchuser, async (req, res) => {
 
 //     try {
@@ -113,5 +114,7 @@ router.post('/login', [
 //         res.status(500).send("Internal server error");
 //     }
 // })
+
+
 
 module.exports = router

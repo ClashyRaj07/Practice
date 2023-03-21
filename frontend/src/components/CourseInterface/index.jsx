@@ -1,7 +1,41 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const CourseInterface = () => {
+  const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [courseData, setCourseData] = useState('');
+  useEffect(() => {
+    setLoading(true);
+
+    const CourseDetail = async () =>
+      await axios
+        .get(`http://localhost:5000/api/courses/get/${id}`)
+        .then((res) => {
+          setCourseData(res.data.courseData);
+          console.log(courseData);
+        });
+
+    const Chapters = async () =>
+      await axios
+        .get(`http://localhost:5000/api/chapters/get/${id}`)
+        .then((res) => {
+          setData(res.data.chapterData);
+
+          setLoading(false);
+        });
+    
+    CourseDetail();
+    Chapters();
+
+  }, [id]);
   return (
+    <>
+    {
+      loading ? <h4>Loading...</h4>
+      :
     <div>
       <div className="flex justify-center">
         <div className="flex flex-col justify-center">
@@ -18,20 +52,17 @@ const CourseInterface = () => {
                 </div>
                 <div className="md:w-2/3 m-4 ">
                   <div className="flex text-gray-500 text-sm m-2">
-                    <div className="m-1 font-bold">Vlog,</div>
-                    <div className="m-1">31 March, 2023</div>
+                    <div className="m-1 font-bold">Posted : </div>
+                    <div className="m-1">{courseData.date.split('T')[0]}</div>
                   </div>
                   <div className="font-bold text-black text-xl m-2">
-                    The 8 Best City Lights In The World!{" "}
+                  {courseData.title}
                   </div>
                   <div className="text-sm text-gray-500 mt-4 m-2">
                     <a href="#">
-                      There's something about city lights that make them so
-                      captivating and romantic. Maybe it's because they remind
-                      us of all the possibilities that exist in the world, or
-                      maybe it's because they're just so darn pretty to look at.
-                      No matter what the reason is, there's no denying that city
-                      lights are some of the most beautiful things in the world.
+                     {
+                      courseData.description
+                     }
                     </a>
                   </div>
                   <div className="flex cursor-pointer">
@@ -58,62 +89,32 @@ const CourseInterface = () => {
           </div>
           {/* //Chapters */}
           <div className="flex flex-col gap-4">
-            <div className="flex cursor-pointer border  bg-[#20b486]/[.4] px-4">
-              <div className="m-2">
-                {" "}
-                <img
-                  src="https://source.unsplash.com/50x50/?man"
-                  alt=""
-                  className=" rounded-full"
-                />{" "}
-              </div>
-              <div className="grid m-1 my-auto">
-                <div className="font-bold text-sm hover:text-gray-800 ">
-                  Chapter 1: Linked List
-                </div>
-                
-              </div>
-            </div>
-            <div className="flex cursor-pointer border  bg-[#20b486]/[.4] px-4">
-              <div className="m-2">
-                {" "}
-                <img
-                  src="https://source.unsplash.com/50x50/?man"
-                  alt=""
-                  className=" rounded-full"
-                />{" "}
-              </div>
-
-
-              <div className="grid m-1 my-auto">
-                <div className="font-bold text-sm hover:text-gray-800 ">
-                  Jason Bourne
-                </div>
-            
-              </div>
-            </div>
-
-
-            <div className="flex cursor-pointer border bg-[#20b486]/[.4] px-4">
-              <div className="m-2">
-                {" "}
-                <img
-                  src="https://source.unsplash.com/50x50/?man"
-                  alt=""
-                  className=" rounded-full"
-                />{" "}
-              </div>
-              <div className="grid m-1 my-auto">
-                <div className="font-bold text-sm hover:text-gray-800 ">
-                  Jason Bourne
-                </div>
-               
-              </div>
-            </div>
+            {data.length<1 ? <h1 className="flex items-center justify-center p-4 text-4xl">No Chapter Currently Available</h1> :  
+              data.map((chapter) => (
+                <Link key={chapter._id} to={chapter.url}>
+                  <div className="flex cursor-pointer border  bg-[#20b486]/[.4] px-4">
+                    <div className="m-2">
+                      {" "}
+                      <img
+                        src="https://source.unsplash.com/50x50/?man"
+                        alt=""
+                        className=" rounded-full"
+                      />{" "}
+                    </div>
+                    <div className="grid m-1 my-auto">
+                      <div className="font-bold text-sm hover:text-gray-800 ">
+                        {chapter.title}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       </div>
     </div>
+    }
+    </>
   );
 };
 

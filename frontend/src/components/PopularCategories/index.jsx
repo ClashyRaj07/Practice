@@ -1,7 +1,29 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {AiOutlineArrowUp} from "react-icons/ai";
 import {FiBookOpen} from "react-icons/fi";
 const PopularCategories = () => {
+
+  const [loading, setLoading] = useState(false);
+const [data, setData] = useState([]);
+useEffect(() => {
+  setLoading(true)
+  const Courses =async ()=>await axios
+    .get("http://localhost:5000/api/courses/all")
+    .then(res=>{
+      res=res.data.courseData
+      let a=[]
+      res.map((el)=>{
+        return a=[...a,el.tag]
+      })
+      // console.log(...new Set(a));
+      setData([...new Set(a)])
+      setLoading(false);
+    })
+  
+  Courses();
+}, []);
+
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -24,12 +46,20 @@ const PopularCategories = () => {
             </p>
           </div>
           <div className="flex flex-wrap -m-2">
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
+           
+            
+            
+            
+          
+            {
+              data && 
+              data.map(item=>
+            <div key={item} className="p-4 lg:w-1/3 md:w-1/2 w-full ">
               <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
                 <FiBookOpen className="text-4xl  mx-6"/>
                 <div className="flex-grow">
                   <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
+                    {item}
                   </h2>
                 </div>
                 <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
@@ -37,110 +67,10 @@ const PopularCategories = () => {
                 </div>
               </div>
             </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2 w-full ">
-              <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
-                <FiBookOpen className="text-4xl  mx-6"/>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font text-2xl">
-                    DSA
-                  </h2>
-                </div>
-                <div className=" mx-4 text-[#20b486] hover:bg-[#20b486] rounded-md transition duration-500 ease-in-out">
-                <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
-                </div>
-              </div>
-            </div>
+              )
+}
+            
+            
             
           </div>
         </div>

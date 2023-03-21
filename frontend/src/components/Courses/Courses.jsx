@@ -1,114 +1,55 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import CourseCard from "../Shared/CourseCard";
+
 
 const Courses = () => {
-  return (
-    <div>
-      <div className="flex flex-col justify-center items-center ">
-              <div className="text-xl md:text-3xl  font-bold uppercase">
-               Available <span className="text-[#20b486]">Courses</span>
-              </div>
-              <div className="border-b-4 border-[#20b486] ">
-                {" "}
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              </div>
-            </div>
-      <div className="flex items-center justify-center text-center">
-        <div className="w-[20vw]">HEllo</div>
-        <div className="flex flex-col p-2 m-2  max-w-7xl ">
-          <div className="flex items-center justify-center md:flex-row flex-col space-x-4 space-y-2 p-2">
-            <div className="flex-col px-6 py-2 ">
-              <div className="h-40 w-60 rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src="https://source.unsplash.com/300x300/?man,businessman"
-                  alt=""
-                  className=""
-                />
-              </div>
 
-              <div className="text-lg font-medium text-stone-600 cursor-pointer hover:text-stone-400">
-                John Doe
-              </div>
-              <div className=" italic text-gray-500">CEO, Tailblocks</div>
-            </div>
-            <div className="flex-col px-6 py-2 ">
-              <div className="h-40 w-60 rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src="https://source.unsplash.com/300x300/?boy"
-                  alt=""
-                  className=""
-                />
-              </div>
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    setLoading(true)
+    const Courses =async ()=>await axios
+      .get("http://localhost:5000/api/courses/all")
+      .then(res=>{
+        res=res.data.courseData
+        setData(res)
+        setLoading(false);
+      })
+    
+    Courses();
+  }, []);
 
-              <div className="text-lg font-medium text-stone-600 cursor-pointer hover:text-stone-400">
-                Arkay
-              </div>
-              <div className=" italic text-gray-500">Executive Producer</div>
-            </div>
-            <div className="flex-col px-6 py-2 ">
-              <div className="h-40 w-60 rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src="https://source.unsplash.com/300x300/?girl"
-                  alt=""
-                  className=""
-                />
-              </div>
-
-              <div className="text-lg font-medium text-stone-600 cursor-pointer hover:text-stone-400">
-                Elina Gilbert
-              </div>
-              <div className=" italic text-gray-500">HR</div>
-            </div>
-          </div>
-          <div className="flex space-x-4 space-y-2 p-2 items-center justify-center md:flex-row flex-col ">
-            <div className="flex-col px-6 py-2 ">
-              <div className="h-40 w-60 rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src="https://source.unsplash.com/300x300/?kid"
-                  alt=""
-                  className=""
-                />
-              </div>
-
-              <div className="text-lg font-medium text-stone-600 cursor-pointer hover:text-stone-400">
-                Clay Johnson
-              </div>
-              <div className=" italic text-gray-500">Manager</div>
-            </div>
-            <div className="flex-col px-6 py-2 ">
-              <div className="h-40 w-60 rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src="https://source.unsplash.com/300x300/?girl,woman"
-                  alt=""
-                  className=""
-                />
-              </div>
-
-              <div className="text-lg font-medium text-stone-600 cursor-pointer hover:text-stone-400">
-                Hannah Saw
-              </div>
-              <div className=" italic text-gray-500">Marketing Producer</div>
-            </div>
-            <div className="flex-col px-6 py-2 ">
-              <div className="h-40 w-60 rounded-2xl overflow-hidden bg-gray-200">
-                <img
-                  src="https://source.unsplash.com/300x300/?woman"
-                  alt=""
-                  className=""
-                />
-              </div>
-
-              <div className="text-lg font-medium text-stone-600 cursor-pointer hover:text-stone-400">
-                Wednesday Addams
-              </div>
-              <div className=" italic text-gray-500">Financer</div>
-            </div>
-          </div>
+  return <>
+  {loading ? (
+    "Loading ..."
+  ) : (
+    <div className="max-w-[600px]  md:max-w-[1480px]  px-6 mx-auto  ">
+      {/* <div className='text-4xl font-bold'>Most Popular <span className=' text-[#20b486]'>Courses</span></div> */}
+      <div className="flex flex-col justify-center items-center">
+        <div className="text-xl md:text-3xl  font-bold uppercase">
+          Most Popular <span className="text-[#20b486]">Courses</span>
+        </div>
+        <div className="border-b-4 border-[#20b486] mt-2">
+          {" "}
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         </div>
       </div>
-      <script src="https://cdn.tailwindcss.com"></script>
+      <p className="my-6 text-gray-500 text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
+      <div className="md:flex gap-10 my-2 items-center justify-center flex-wrap ">
+        { console.log(data)}
+        {
+         
+          data && 
+          data?.map(course=><CourseCard  key={course._id} id={course._id} title={course.title} description={course.description} views={123}/>)
+        }
+      </div>
     </div>
-  );
+  )}
+</>;
 };
 
 export default Courses;
