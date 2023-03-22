@@ -18,7 +18,7 @@ router.post("/create",async (req,res) =>{
 router.get("/get/:id",async (req,res) =>{
     const cousreId=req.params.id;
     try {
-        const courseData=await Course.findById(cousreId);
+        const courseData=await Course.findById(cousreId).populate('user');
         res.status(200).json({
             success:true,
             courseData
