@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import BaseUrl  from '../../constant'
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -19,7 +20,8 @@ const SignUp = () => {
     }
     const RegisterSubmmitHandler = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:5000/api/auth/createuser", { ...Data }).then(res => {
+        
+        await axios.post(`${BaseUrl}/api/auth/createuser`, { ...Data }).then(res => {
             if (res.data.success) {
                 setIsCreated(true);
                 localStorage.setItem("token",res.data.authToken);

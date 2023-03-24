@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import BaseUrl from '../../constant';
 
 const Login = () => {
 
@@ -18,7 +19,7 @@ const Login = () => {
     }
     const LoginSubmitHandler = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:5000/api/auth/login", { email: Data.email, password: Data.password }).then(res => {
+        await axios.post(`${BaseUrl}/api/auth/login`, { email: Data.email, password: Data.password }).then(res => {
             if (res.data.success) {
                 setIsCreated(true);
                 localStorage.setItem("token", res.data.authtoken);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import BaseUrl from "../../constant";
 import CourseCard from "../Shared/CourseCard";
 
 
@@ -10,7 +11,7 @@ const Courses = () => {
   useEffect(() => {
     setLoading(true)
     const Courses =async ()=>await axios
-      .get("http://localhost:5000/api/courses/all")
+      .get(`${BaseUrl}/api/courses/all`)
       .then(res=>{
         res=res.data.courseData
         setData(res)

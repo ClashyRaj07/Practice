@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "proxy":"https://lastmomentbuddyserver.onrender.com",
   "private": true,
   "dependencies": {
     "@react-pdf-viewer/core": "^3.11.0",

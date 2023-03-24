@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {AiOutlineArrowUp} from "react-icons/ai";
 import {FiBookOpen} from "react-icons/fi";
+import BaseUrl from "../../constant";
 const PopularCategories = () => {
 
   const [loading, setLoading] = useState(false);
@@ -9,7 +10,7 @@ const [data, setData] = useState([]);
 useEffect(() => {
   setLoading(true)
   const Courses =async ()=>await axios
-    .get("http://localhost:5000/api/courses/all")
+    .get(`${BaseUrl}/api/courses/all`)
     .then(res=>{
       res=res.data.courseData
       let a=[]

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CourseCard from "../Shared/CourseCard";
 import axios from "axios";
+import BaseUrl from "../../constant";
 
 const PopularCourses = () => {
   const [loading, setLoading] = useState(false);
@@ -8,7 +9,7 @@ const PopularCourses = () => {
   useEffect(() => {
     setLoading(true)
     const Courses =async ()=>await axios
-      .get("http://localhost:5000/api/courses/all")
+      .get(`${BaseUrl}/api/courses/all`)
       .then(res=>{
         res=res.data.courseData
         setData(res.slice(0,4))

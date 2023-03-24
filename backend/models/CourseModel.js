@@ -21,7 +21,7 @@ const CourseSchema = new Schema({
     type: String,
     default: 'General'
   },
-  coursre_banner_url: {
+  course_banner_url: {
     type: String,
     required: true
   },

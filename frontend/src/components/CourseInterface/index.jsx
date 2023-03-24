@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import BaseUrl from "../../constant";
 import Loader from "../Loader";
 
 const CourseInterface = () => {
@@ -22,7 +23,7 @@ const CourseInterface = () => {
 
     const CourseDetail = async () =>
       await axios
-        .get(`http://localhost:5000/api/courses/get/${id}`)
+        .get(`${BaseUrl}/api/courses/get/${id}`)
         .then((res) => {
           setCourseData(res.data.courseData);
           console.log(courseData);
@@ -30,7 +31,7 @@ const CourseInterface = () => {
 
     const Chapters = async () =>
       await axios
-        .get(`http://localhost:5000/api/chapters/get/${id}`)
+        .get(`${BaseUrl}/api/chapters/get/${id}`)
         .then((res) => {
           setData(res.data.chapterData);
 
