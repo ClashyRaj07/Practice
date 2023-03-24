@@ -37,6 +37,7 @@ const PopularCourses = () => {
           <p className="my-6 text-gray-500 text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
+          <h1>Hello</h1>
           <div className="md:flex gap-10 my-2 items-center justify-center ">
             { console.log(data)}
             {
