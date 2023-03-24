@@ -53,7 +53,7 @@ const CourseInterface = () => {
                       <div className="md:w-2/3 m-4 ">
                         <div className="flex text-gray-500 text-sm m-2">
                           <div className="m-1 font-bold">Posted On: </div>
-                          <div className="m-1">{courseData?.date?.split('T')[0]}</div>
+                          <div className="m-1">{courseData && courseData?.date?.split('T')[0]}</div>
                         </div>
                         <div className="font-bold text-black text-xl m-2">
                           Course : {courseData.title}
@@ -76,10 +76,10 @@ const CourseInterface = () => {
                           </div>
                           <div className="grid m-1">
                             <div className="font-bold text-sm hover:text-gray-600 mt-2">
-                              {courseData.user.name}
+                              {courseData?.user?.name}
                             </div>
                             <div className=" text-sm hover:text-gray-600">
-                              {courseData.user.email}
+                              {courseData?.user?.email}
                             </div>
                           </div>
                         </div>
