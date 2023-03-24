@@ -21,7 +21,7 @@ const Login = () => {
         await axios.post("http://localhost:5000/api/auth/login", { email: Data.email, password: Data.password }).then(res => {
             if (res.data.success) {
                 setIsCreated(true);
-                localStorage.setItem("token",res.data.authToken);
+                localStorage.setItem("token", res.data.authtoken);
             }
             setResponse(res.data)
 
@@ -30,7 +30,7 @@ const Login = () => {
     }
     useEffect(() => {
         if (isCreated) {
-            navigate('/courses')
+            navigate('/')
         }
         else {
 
