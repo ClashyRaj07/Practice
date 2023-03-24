@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import CourseInterface from "./components/CourseInterface";
 import Courses from "./components/Courses/Courses";
+import NotFound from './components/NotFound'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         {/* <CourseInterface/> */}
         <Routes>
           <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/notfound" element={<NotFound/>}/>
           <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/signup" element={<SignUp/>}/>
           <Route exact path="/contact" element={<ContactUs/>}/>

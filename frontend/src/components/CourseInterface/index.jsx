@@ -1,14 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Loader from "../Loader";
 
 const CourseInterface = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [courseData, setCourseData] = useState('');
+  const [error, setError] = useState(false)
   useEffect(() => {
+    if (error) {
+      navigate('/notfount')
+    }
+
     setLoading(true);
+    if (!localStorage.getItem("token")) {
+      navigate('/login?redirect=courses')
+    }
 
     const CourseDetail = async () =>
       await axios
@@ -16,7 +26,7 @@ const CourseInterface = () => {
         .then((res) => {
           setCourseData(res.data.courseData);
           console.log(courseData);
-        });
+        }).catch(error => setError(true));
 
     const Chapters = async () =>
       await axios
@@ -25,16 +35,17 @@ const CourseInterface = () => {
           setData(res.data.chapterData);
 
           setLoading(false);
-        });
+        }).catch(error => setError(true));
+    ;
 
     CourseDetail();
     Chapters();
 
-  }, [id]);
+  }, [id, error]);
   return (
     <>
       {
-        loading ? <h4>Loading...</h4>
+        loading ? <Loader />
           :
           <div>
             <div className="flex justify-center">
