@@ -20,11 +20,11 @@ const SignUp = () => {
     const RegisterSubmmitHandler = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:5000/api/auth/createuser", { ...Data }).then(res => {
-            if (res.success) {
+            if (res.data.success) {
                 setIsCreated(true);
-
+                localStorage.setItem("token",res.data.authToken);
             }
-            setResponse(res)
+            setResponse(res.data)
 
         });
 

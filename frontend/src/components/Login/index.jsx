@@ -19,11 +19,11 @@ const Login = () => {
     const LoginSubmitHandler = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:5000/api/auth/login", { email: Data.email, password: Data.password }).then(res => {
-            if (res.success) {
+            if (res.data.success) {
                 setIsCreated(true);
-
+                localStorage.setItem("token",res.data.authToken);
             }
-            setResponse(res)
+            setResponse(res.data)
 
         });
 

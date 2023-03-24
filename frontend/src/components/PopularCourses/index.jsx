@@ -37,13 +37,12 @@ const PopularCourses = () => {
           <p className="my-6 text-gray-500 text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
-          <h1>Hello</h1>
           <div className="md:flex gap-10 my-2 items-center justify-center ">
             { console.log(data)}
             {
              
               data && 
-              data?.map(course=><CourseCard  key={course._id} id={course._id} title={course.title} description={course.description} views={123}/>)
+              data?.map(course=><CourseCard  key={course._id} id={course._id} title={course.title} description={course.description.slice(0,50) + "..."} views={123}/>)
             }
           </div>
         </div>
