@@ -103,14 +103,14 @@ const Header = () => {
         </div>
 
         <div className="flex flex-col  gap-6 items-center transition duration-500 ease-in-out m-6">
-          <Link to={'/login'}> <div className="flex item-center w-[50vw]  justify-center gap-2 px-12 py-2 border border-[#20b486] rounded-md hover:bg-[#20b486] hover:text-white hover:border transition duration-500 ease-in-out">
+{!token &&          <Link to={'/login'}> <div className="flex item-center w-[50vw]  justify-center gap-2 px-12 py-2 border border-[#20b486] rounded-md hover:bg-[#20b486] hover:text-white hover:border transition duration-500 ease-in-out">
             <AiOutlineLock className="text-2xl" />
             <span>Login</span>
           </div>
-          </Link>
-          <Link to={'/signup'}>
+          </Link>}
+          <Link to={'/signup'} onClick={handleLogout}>
             <div className="text-white px-6 w-[50vw] item-center border py-2 bg-[#20b486] rounded-md hover:bg-transparent hover:text-[#20b486] hover:border-[#20b486] transition duration-500 ease-in-out mb-10 text-center">
-              Sign up for Free
+             {token ? "Logout" : "Sign up for Free"}
             </div>
           </Link>
         </div>
