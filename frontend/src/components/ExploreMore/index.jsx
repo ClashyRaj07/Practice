@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ExploremoreImg from "../../assets/Exploremore.jpg"
 const ExploreMore = () => {
   return (
-    <div>
+    <div className='w-[90%] mx-auto'>
         <section className="text-gray-600 body-font">
         <div className="flex flex-col justify-center items-center mt-24">
               <div className="text-xl md:text-3xl  font-bold uppercase">

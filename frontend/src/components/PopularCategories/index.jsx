@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {AiOutlineArrowUp} from "react-icons/ai";
 import {FiBookOpen} from "react-icons/fi";
+import { Link } from "react-router-dom";
 import BaseUrl from "../../constant";
 const PopularCategories = () => {
 
@@ -46,16 +47,12 @@ useEffect(() => {
               haven't heard of them.
             </p>
           </div>
-          <div className="flex flex-wrap -m-2">
-           
-            
-            
-            
-          
+          <div className="flex flex-wrap -m-2 ">
             {
               data && 
               data.map(item=>
-            <div key={item} className="p-4 lg:w-1/3 md:w-1/2 w-full ">
+                <Link to={`/courses?category=${item}`}>
+            <div key={item} className="p-4  w-full ">
               <div className="h-full flex items-center border-gray-200 border p-2 rounded-lg hover:border hover:border-[#20b486] transition duration-500 ease-in-out">
                 <FiBookOpen className="text-4xl  mx-6"/>
                 <div className="flex-grow">
@@ -67,7 +64,7 @@ useEffect(() => {
                 <AiOutlineArrowUp className="text-5xl hover:text-white text-[#20b486] rotate-45"/>
                 </div>
               </div>
-            </div>
+            </div></Link>
               )
 }
             

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import BaseUrl from "../../constant";
+import Loader from "../Loader";
 import CourseCard from "../Shared/CourseCard";
 
 
@@ -23,9 +24,9 @@ const Courses = () => {
 
   return <>
   {loading ? (
-    "Loading ..."
+    <Loader/>
   ) : (
-    <div className="max-w-[600px]  md:max-w-[1480px]  px-6 mx-auto  ">
+    <div className="max-w-[600px]  md:max-w-[1480px]  px-6 mx-auto  py-6">
       {/* <div className='text-4xl font-bold'>Most Popular <span className=' text-[#20b486]'>Courses</span></div> */}
       <div className="flex flex-col justify-center items-center">
         <div className="text-xl md:text-3xl  font-bold uppercase">
@@ -45,7 +46,7 @@ const Courses = () => {
         {
          
           data && 
-          data?.map(course=><CourseCard  key={course._id} id={course._id} title={course.title} description={course.description} views={123}/>)
+          data?.map(course=><CourseCard  key={course._id} id={course._id} title={course.title} description={course.description.slice(0,50) + "..."} views={123}/>)
         }
       </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CourseCard from "../Shared/CourseCard";
 import axios from "axios";
 import BaseUrl from "../../constant";
+import Loader from '../Loader'
 
 const PopularCourses = () => {
   const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ const PopularCourses = () => {
   return (
     <>
       {loading ? (
-        "Loading ..."
+        <Loader/>
       ) : (
         <div className="max-w-[600px]  md:max-w-[1480px]  px-6 mx-auto  ">
           {/* <div className='text-4xl font-bold'>Most Popular <span className=' text-[#20b486]'>Courses</span></div> */}
@@ -39,9 +40,9 @@ const PopularCourses = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
           <div className="md:flex gap-10 my-2 items-center justify-center ">
-            { console.log(data)}
+            
             {
-             
+             loading ? <Loader/> :
               data && 
               data?.map(course=><CourseCard  key={course._id} id={course._id} title={course.title} description={course.description.slice(0,50) + "..."} views={123}/>)
             }

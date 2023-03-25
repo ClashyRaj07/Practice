@@ -4,7 +4,7 @@ const StudentFeedback = () => {
   return (
     <div>
           <div className="flex justify-center ">
-                                            <div className="flex flex-col justify-center  my-10 w-[90%] space-y-28 lg:space-y-24 max-w-7xl">
+                                            <div className="flex flex-col justify-center  my-10 w-[95%] space-y-28 lg:space-y-24 max-w-7xl">
                                                 <div className="flex flex-col justify-center items-center ">
                                                     <div className="text-xl md:text-3xl text-[#20b486] font-bold uppercase">testimonials</div>
                                                     <div className="border-b-4 border-[#20b486] mt-2"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

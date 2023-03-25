@@ -22,7 +22,6 @@ const Header = () => {
   }
   useEffect(() => {
     token = localStorage.getItem("token")
-
   }, [token])
 
   return (

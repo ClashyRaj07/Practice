@@ -51,15 +51,15 @@ const CourseInterface = () => {
           <div>
             <div className="flex justify-center">
               <div className="flex flex-col justify-center">
-                <div className="flex flex-col md:flex-row max-w-7xl justify-center items-center ">
+                <div className="flex flex-col md:flex-row max-w-7xl justify-center items-center px-4">
                   <div className="overflow-hidden w-full m-4 shadow-sm flex flex-col md:flex-row justify-center">
                     <div className="flex flex-col md:flex-row items-center">
-                      <div className=" w-full overflow-hidden">
+                      <div className="w-full overflow-hidden">
                         {" "}
                         <img
-                          src="https://cdn-images-1.medium.com/max/1200/1*9QRFQdpO2f59GsN2KsE9XA.png"
+                          src={courseData && courseData.course_banner_url}
                           alt=""
-                          className="w-full"
+                          className="h-80 w-full object-cover"
                         />{" "}
                       </div>
                       <div className="md:w-2/3 m-4 ">
@@ -78,10 +78,10 @@ const CourseInterface = () => {
                           </a>
                         </div>
                         <div className="flex cursor-pointer">
-                          <div className="m-2">
+                          <div className="m-2 h-12 w-12 aspect-square">
                             {" "}
                             <img
-                              src="https://source.unsplash.com/50x50/?man"
+                              src={courseData?.user?.profile_url}
                               alt=""
                               className=" rounded-full"
                             />{" "}
@@ -100,15 +100,15 @@ const CourseInterface = () => {
                   </div>
                 </div>
                 {/* //Chapters */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-wrap gap-4 p-8 border-t-2 border-[#20b486]-400 w-[75vw] ">
                   {data.length < 1 ? <h1 className="flex items-center justify-center p-4 text-4xl">No Chapter Currently Available</h1> :
                     data.map((chapter) => (
                       <Link key={chapter._id} to={chapter.url}>
-                        <div className="flex cursor-pointer border  bg-[#20b486]/[.4] px-4">
-                          <div className="m-2">
+                        <div className="flex cursor-pointer w-[80vw] md:w-full  border bg-[#20b486]/[.4] hover:bg-[#20b486]/[.8] transition-all duration-300 px-4 rounded-md" >
+                          <div className="m-2 h-10 w-10">
                             {" "}
                             <img
-                              src="https://source.unsplash.com/50x50/?man"
+                              src='https://tse2.mm.bing.net/th?id=OIP.YyCbttZazARxvTUORQKK4AHaHa&pid=Api&P=0'
                               alt=""
                               className=" rounded-full"
                             />{" "}
@@ -120,7 +120,12 @@ const CourseInterface = () => {
                           </div>
                         </div>
                       </Link>
+                      
                     ))}
+
+                    
+
+                    
                 </div>
               </div>
             </div>

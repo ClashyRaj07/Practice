@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/signup" element={<SignUp/>}/>
           <Route exact path="/contact" element={<ContactUs/>}/>
           <Route exact path="/courses" element={<Courses/>}/>
-          <Route exact path="/:id" element={<CourseInterface/>}/>
+          <Route exact path="/course/:id" element={<CourseInterface/>}/>
           
         </Routes>
         <Footer />
