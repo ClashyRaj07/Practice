@@ -11,12 +11,14 @@ import SignUp from "./components/SignUp";
 import CourseInterface from "./components/CourseInterface";
 import Courses from "./components/Courses/Courses";
 import NotFound from './components/NotFound'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <>
       
       <Router>
+        <ScrollToTop/>
         {/* <Courses/> */}
         <Header />
         {/* <CourseInterface/> */}
