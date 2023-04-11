@@ -19,9 +19,9 @@ function App() {
       
       <Router>
         <ScrollToTop/>
-        {/* <Courses/> */}
+    
         <Header />
-        {/* <CourseInterface/> */}
+        
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/notfound" element={<NotFound/>}/>
